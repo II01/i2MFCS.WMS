@@ -392,6 +392,8 @@ namespace i2MFCS.WMS.Core.Xml
             try
             {
 
+                Log.AddLog(Log.SeverityEnum.Event, "Programm", "WS processing 1");
+
                 using (var dc = new WMSContext())
                 {
 
@@ -417,11 +419,18 @@ namespace i2MFCS.WMS.Core.Xml
                         };
                         try
                         {
+                            Log.AddLog(Log.SeverityEnum.Event, "Programm", "WS processing 2");
+
+
                             if (dc.CommandERP.FirstOrDefault(p => p.ERP_ID == cmdERP.ERP_ID) != null)
                                 throw new XMLParsingException($"ERPID:ERPIDEXISTS ({cmdERP.ERP_ID})");
 
+                            Log.AddLog(Log.SeverityEnum.Event, "Programm", "WS processing 3");
+
                             dc.CommandERP.Add(cmdERP);
                             dc.SaveChanges();
+
+                            Log.AddLog(Log.SeverityEnum.Event, "Programm", "WS processing 4");
 
                             int status = 0;
 
@@ -529,6 +538,8 @@ namespace i2MFCS.WMS.Core.Xml
                 }
                 el0.Element(nsOut + "xmlcommandstring").Add(new XElement("Status", fault ? 1 : 0));
                 el0.Element(nsOut + "xmlcommandstring").Add(new XElement("ExtraInfo", ""));
+
+                Log.AddLog(Log.SeverityEnum.Event, "Programm", "WS processing 5");
 
                 return XOutDocument.ToString();
             }

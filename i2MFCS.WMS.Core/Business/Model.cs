@@ -43,7 +43,7 @@ namespace i2MFCS.WMS.Core.Business
             {
                 try
                 {
-                    _simulateERP.SimulateIncomingTUs("T014", $"MAT0{_rnd.Next(1, 3)}", $"BATCH0{_rnd.Next(1, 3)}", 5);
+//                    _simulateERP.SimulateIncomingTUs("T014", $"MAT0{_rnd.Next(1, 3)}", $"BATCH0{_rnd.Next(1, 3)}", 5);
                     CreateInputCommand();
                     CreateOutputCommands();
                 }
